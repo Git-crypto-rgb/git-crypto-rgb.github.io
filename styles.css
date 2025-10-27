@@ -1,86 +1,82 @@
-/* --- Basic Reset and Layout --- */
-body {
+/* --- 1. 全局重置与全高设置 (关键) --- */
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%; /* 确保高度可计算 */
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
 
-header, footer {
+/* --- 2. 头部和底部样式 --- */
+header {
     padding: 20px;
     background-color: #f8f8f8;
     border-bottom: 1px solid #eee;
 }
 
-/* Flexbox Container for Sidebar and Content */
-/* 移除旧的布局容器，让内容独占一行 */
-.container {
-    /* 删除或注释掉 display: flex; 等侧边栏布局代码 */
-}
-/* 删除或注释掉 .sidebar 的样式 */
-
-
-/* --- 新的导航栏 (Top Navbar) 样式 --- */
-.navbar {
-    background-color: #333; /* 导航栏背景色 */
-    padding: 0;
-}
-
-/* 主列表 (Algebra, Geometry) - 关键：水平排列 */
-.navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* <-- 启用 Flex 布局，让主菜单项并排 */
-}
-
-.navbar li {
-    position: relative; /* 允许子菜单相对于父菜单定位 */
-    /* 移除之前的浮动或 block 样式，让 flex 控制 */
-}
-
-/* 主菜单链接样式 */
-.navbar li a {
-    display: block;
-    padding: 15px 20px;
-    text-decoration: none;
-    color: white;
+footer {
+    padding: 10px 20px;
     text-align: center;
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
 }
 
-.navbar li a:hover {
-    background-color: #555;
+/* --- 3. 核心布局容器 (Flexbox) --- */
+.container {
+    display: flex; /* 启用 Flex 布局实现左右并排 */
+    /* 100vh - 顶部和底部区域的预估高度 (请根据实际调整) */
+    min-height: calc(100vh - 100px); 
 }
 
-/* --- 子菜单 (Submenu) 样式 - 关键：下拉菜单效果 --- */
-.navbar .submenu {
-    display: none; /* <-- 默认隐藏子菜单 */
-    position: absolute; /* 相对于父菜单项定位 */
-    top: 100%; /* 定位到父菜单项的下方 */
-    left: 0;
-    background-color: #444; /* 子菜单背景色 */
-    min-width: 200px;
-    z-index: 1000; /* 确保子菜单在其他内容之上 */
-    flex-direction: column; /* 子菜单恢复垂直排列 */
+/* --- 4. 侧边栏样式 (左侧全高) --- */
+.sidebar {
+    width: 250px; /* 固定宽度 */
+    padding: 20px;
+    background-color: #eef; /* 浅蓝色背景以突出侧边栏 */
+    border-right: 1px solid #ccc;
+    flex-shrink: 0; /* 防止侧边栏被压缩 */
 }
 
-/* 显示子菜单（当鼠标悬停在父菜单项上时） */
-.navbar li:hover > .submenu {
-    display: flex; /* <-- 鼠标悬停时显示子菜单 */
+/* --- 5. 导航列表和链接样式 --- */
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #aaa;
+    padding-bottom: 5px;
 }
 
-/* 子菜单中的链接样式 */
-.navbar .submenu li {
-    border-top: 1px solid #555;
+.sidebar ul {
+    list-style: none; /* 移除默认列表点 */
+    padding-left: 0;
 }
 
-.navbar .submenu li a {
-    padding: 10px 15px;
-    text-align: left;
-    white-space: nowrap; /* 防止文本换行 */
+.sidebar li a {
+    display: block; /* 使链接占据整行 */
+    padding: 6px 0;
+    text-decoration: none;
+    color: #0056b3;
+    transition: background-color 0.2s; /* 添加悬停过渡效果 */
 }
 
-/* --- 主要内容区域样式 --- */
+.sidebar li a:hover {
+    background-color: #e0e0f0;
+}
+
+/* --- 6. 子菜单 (层次感) 样式 --- */
+.submenu {
+    list-style: none;
+    margin: 5px 0 10px 15px; /* 上外边距 5px, 左外边距 15px */
+    border-left: 2px solid #ddd; /* 左侧垂直线条 */
+    padding-left: 10px;
+}
+
+.submenu li a {
+    font-size: 0.95em;
+    color: #333;
+    padding: 4px 0;
+}
+
+/* --- 7. 主要内容区域样式 (右侧) --- */
 .content {
-    /* 确保内容区域在导航栏下方，并有足够的内边距 */
+    flex-grow: 1; /* 占据剩余的所有空间 */
     padding: 20px;
 }
