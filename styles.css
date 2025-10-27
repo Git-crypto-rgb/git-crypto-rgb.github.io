@@ -12,53 +12,75 @@ header, footer {
 }
 
 /* Flexbox Container for Sidebar and Content */
+/* 移除旧的布局容器，让内容独占一行 */
 .container {
-    display: flex; 
-    min-height: 80vh; /* 确保内容区至少占据一定高度 */
+    /* 删除或注释掉 display: flex; 等侧边栏布局代码 */
 }
+/* 删除或注释掉 .sidebar 的样式 */
 
-/* --- Sidebar Styling --- */
-.sidebar {
-    width: 220px; /* 侧边栏宽度 */
-    padding: 20px;
-    background-color: #eef; /* 浅蓝色背景以突出侧边栏 */
-    border-right: 1px solid #ccc;
-    flex-shrink: 0; /* 防止侧边栏被压缩 */
-}
 
-.sidebar h2 {
-    margin-top: 0;
-    border-bottom: 2px solid #aaa;
-    padding-bottom: 5px;
-}
-
-.sidebar ul {
-    list-style: none; /* 移除默认的列表点 */
+/* --- 新的导航栏 (Top Navbar) 样式 --- */
+.navbar {
+    background-color: #333; /* 导航栏背景色 */
     padding: 0;
 }
 
-.sidebar li a {
-    display: block; /* 使链接占据整行 */
-    padding: 6px 0;
+/* 主列表 (Algebra, Geometry) - 关键：水平排列 */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* <-- 启用 Flex 布局，让主菜单项并排 */
+}
+
+.navbar li {
+    position: relative; /* 允许子菜单相对于父菜单定位 */
+    /* 移除之前的浮动或 block 样式，让 flex 控制 */
+}
+
+/* 主菜单链接样式 */
+.navbar li a {
+    display: block;
+    padding: 15px 20px;
     text-decoration: none;
-    color: #0056b3;
+    color: white;
+    text-align: center;
 }
 
-/* Subpage/Nested List Styling */
-.sidebar ul ul {
-    margin-left: 15px; /* 子列表缩进 */
-    border-left: 2px solid #ddd;
-    margin-top: 5px;
+.navbar li a:hover {
+    background-color: #555;
 }
 
-.sidebar ul ul li a {
-    font-size: 0.9em;
-    padding: 4px 0 4px 5px;
-    color: #333;
+/* --- 子菜单 (Submenu) 样式 - 关键：下拉菜单效果 --- */
+.navbar .submenu {
+    display: none; /* <-- 默认隐藏子菜单 */
+    position: absolute; /* 相对于父菜单项定位 */
+    top: 100%; /* 定位到父菜单项的下方 */
+    left: 0;
+    background-color: #444; /* 子菜单背景色 */
+    min-width: 200px;
+    z-index: 1000; /* 确保子菜单在其他内容之上 */
+    flex-direction: column; /* 子菜单恢复垂直排列 */
 }
 
-/* --- Main Content Styling --- */
+/* 显示子菜单（当鼠标悬停在父菜单项上时） */
+.navbar li:hover > .submenu {
+    display: flex; /* <-- 鼠标悬停时显示子菜单 */
+}
+
+/* 子菜单中的链接样式 */
+.navbar .submenu li {
+    border-top: 1px solid #555;
+}
+
+.navbar .submenu li a {
+    padding: 10px 15px;
+    text-align: left;
+    white-space: nowrap; /* 防止文本换行 */
+}
+
+/* --- 主要内容区域样式 --- */
 .content {
-    flex-grow: 1; /* 占据剩余的所有空间 */
+    /* 确保内容区域在导航栏下方，并有足够的内边距 */
     padding: 20px;
 }
