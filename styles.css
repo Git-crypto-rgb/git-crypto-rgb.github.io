@@ -1,0 +1,64 @@
+/* --- Basic Reset and Layout --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+header, footer {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+/* Flexbox Container for Sidebar and Content */
+.container {
+    display: flex; 
+    min-height: 80vh; /* 确保内容区至少占据一定高度 */
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+    width: 220px; /* 侧边栏宽度 */
+    padding: 20px;
+    background-color: #eef; /* 浅蓝色背景以突出侧边栏 */
+    border-right: 1px solid #ccc;
+    flex-shrink: 0; /* 防止侧边栏被压缩 */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #aaa;
+    padding-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none; /* 移除默认的列表点 */
+    padding: 0;
+}
+
+.sidebar li a {
+    display: block; /* 使链接占据整行 */
+    padding: 6px 0;
+    text-decoration: none;
+    color: #0056b3;
+}
+
+/* Subpage/Nested List Styling */
+.sidebar ul ul {
+    margin-left: 15px; /* 子列表缩进 */
+    border-left: 2px solid #ddd;
+    margin-top: 5px;
+}
+
+.sidebar ul ul li a {
+    font-size: 0.9em;
+    padding: 4px 0 4px 5px;
+    color: #333;
+}
+
+/* --- Main Content Styling --- */
+.content {
+    flex-grow: 1; /* 占据剩余的所有空间 */
+    padding: 20px;
+}
