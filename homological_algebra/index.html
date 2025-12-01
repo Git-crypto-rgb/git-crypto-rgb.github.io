@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>Homological Algebra Notes</title>
     <link rel="stylesheet" href="../styles.css">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']] // 允许使用 $...$ 写行内公式
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 </head>
 <body>
 
@@ -21,6 +34,19 @@
         </ul>
 
         <hr>
+        <h2> Application of homological algebra </h2> 
+        <h3> Extension problems </h3> 
+        <p> A fundamental question in algebra is how to construct an object from little building blocks. This story begins with an abelian category $\mathscr{A}$. Given two objects 
+        $A$ and $C$ as objects of $\mathscr{A}$, find all middle objects $E$ that fits into the exact sequence $$0 \longrightarrow A \longrightarrow E \longrightarrow C\longrightarrow 0$$ 
+        This is known as classification problem. </p> 
+        <p> We begin with the linear case, $R$-modules $A$ and $C$. The notes provide a structural classification via $\mathrm{Ext}$ functor, which suggests the set of equivalence classes of 
+        the short exact sequences are isomorphic to the group $\mathrm{Ext}^1(C,A)$. </p> 
+        <p> Then let's turn to the non-linear context of group extensions. By introducing the group ring $\mathbb{Z}[G]$, we bridge the gap between groups and modules. To make the 
+        problem fill in the abelian category, the context of group extensions splits into two cases: <br>
+        The first case is when $A$ is abelian (the kernel of $E$ is abelian). In this case, ... This unification of groups and modules reveals that the group cohomology $H^2$ is not 
+        an isolated theory. In fact, it is a specific example of $\mathrm{Ext}$ functors.<br> 
+        The second case is when $A$ and $C$ are solely groups. This case is more complicated.
+        </p> 
 
         <div style="margin-top: 20px;">
             <a href="../index.html">← Back to Home</a>
