@@ -1,69 +1,89 @@
-/* --- 1. 全局重置与全高设置 (关键) --- */
-/* 根目录/styles.css */
+/* --- 1. 全局基础设置 --- */
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 字体推荐 */
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    
-    /* === 解决问题 2：两侧页边距太窄 === */
-    /* 1. 限制内容的最大宽度，不让它铺满整个屏幕，这在宽屏上阅读体验更好 */
-    max-width: 900px; 
-    
-    /* 2. 让这个 900px 的块在屏幕中间居中 */
-    margin: 0 auto; 
-    
-    /* 3. 给手机或小屏幕留出一点内边距，防止字贴着屏幕边缘 */
-    padding: 20px 40px; 
-
-    /* === 解决问题 1：行间距 === */
-    /* line-height 控制一行文字的高度。1.5 到 1.6 是最舒服的阅读比例 */
-    line-height: 1.5; 
+    width: 100%; /* 撑满全屏 */
+    background-color: #fff;
 }
 
-/* 专门针对段落的设置 */
-p {
-    /* 段落与段落之间的距离 */
-    margin-bottom: 12px; 
-    
-    /* 确保段落开头没有多余的空白 */
-    margin-top: 0; 
+/* --- 2. 顶部标题栏 --- */
+.site-header {
+    background-color: #f8f9fa; /* 浅灰背景 */
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd; /* 底部细线 */
 }
 
-/* 针对标题稍微调整一下，让层次更分明 */
-h1, h2, h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    color: #000;
+.site-header h1 {
+    margin: 0;
+    font-size: 24px;
 }
 
-/* 链接样式优化 */
-a {
+/* --- 3. 核心布局容器 (左右双栏) --- */
+.container {
+    display: flex; /* 开启双栏模式 */
+    min-height: 100vh; /* 最小高度占满屏幕 */
+}
+
+/* --- 4. 左侧边栏 (Sidebar) --- */
+.sidebar {
+    width: 260px; /* 固定宽度 */
+    background-color: #f5f7f9; /* 淡蓝灰背景 */
+    padding: 30px;
+    border-right: 1px solid #ddd; /* 右侧分割线 */
+    flex-shrink: 0; /* 禁止侧边栏被挤压 */
+}
+
+.sidebar h2 {
+    font-size: 1.1em;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar h3 {
+    font-size: 0.95em;
     color: #0366d6;
-    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
-a:hover {
+
+.sidebar ul {
+    list-style: none; /* 去掉前面的圆点 */
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    display: block; /* 让链接占满一行，更容易点击 */
+    padding: 2px 0;
+}
+
+.sidebar a:hover {
+    color: #0366d6;
     text-decoration: underline;
 }
 
-/* --- 2. 头部和底部样式 --- */
-header {
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #eee;
+/* --- 5. 右侧内容区 (Content) --- */
+.content {
+    flex-grow: 1; /* 自动填满剩余空间 */
+    padding: 40px 60px; /* 内部留白 */
+    background-color: #fff;
 }
 
-footer {
-    padding: 10px 20px;
-    text-align: center;
-    background-color: #f8f8f8;
-    border-top: 1px solid #eee;
-}
-
-/* --- 3. 核心布局容器 (Flexbox) --- */
-.container {
-    display: flex; /* 启用 Flex 布局实现左右并排 */
-    /* 100vh - 顶部和底部区域的预估高度 (请根据实际调整) */
-    min-height: calc(100vh - 100px); 
-}
+/* 限制文章内容的宽度，提升阅读体验 */
+.content p, .content h2
 
 /* --- 4. 侧边栏样式 (左侧全高) --- */
 .sidebar {
