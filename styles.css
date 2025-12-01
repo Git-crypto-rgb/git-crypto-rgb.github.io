@@ -1,10 +1,47 @@
 /* --- 1. 全局重置与全高设置 (关键) --- */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%; /* 确保高度可计算 */
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* 根目录/styles.css */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 字体推荐 */
+    color: #333;
+    
+    /* === 解决问题 2：两侧页边距太窄 === */
+    /* 1. 限制内容的最大宽度，不让它铺满整个屏幕，这在宽屏上阅读体验更好 */
+    max-width: 900px; 
+    
+    /* 2. 让这个 900px 的块在屏幕中间居中 */
+    margin: 0 auto; 
+    
+    /* 3. 给手机或小屏幕留出一点内边距，防止字贴着屏幕边缘 */
+    padding: 20px 40px; 
+
+    /* === 解决问题 1：行间距 === */
+    /* line-height 控制一行文字的高度。1.5 到 1.6 是最舒服的阅读比例 */
+    line-height: 1.5; 
+}
+
+/* 专门针对段落的设置 */
+p {
+    /* 段落与段落之间的距离 */
+    margin-bottom: 12px; 
+    
+    /* 确保段落开头没有多余的空白 */
+    margin-top: 0; 
+}
+
+/* 针对标题稍微调整一下，让层次更分明 */
+h1, h2, h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #000;
+}
+
+/* 链接样式优化 */
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 /* --- 2. 头部和底部样式 --- */
