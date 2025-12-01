@@ -1,43 +1,37 @@
 #!/bin/bash
 
-# ================= 关键修改位置 =================
-# 修正后的精确路径
+# ================= 再次确认路径 =================
+# 你之前的日志显示源文件在这里，请确认这里面的 PDF 是不是完整的？
 SOURCE_DIR="/d/Latexfile/Projects/build"
 
-# 目标路径 (你的网站 notes 文件夹)
+# 目标路径
 TARGET_DIR="./notes"
 # ===============================================
 
-echo "==== 🚀 开始同步笔记 ===="
+echo "==== 🚀 强力同步模式 ===="
 echo "源目录: $SOURCE_DIR"
 
-# 1. 双重检查目录是否存在
+# 1. 检查源目录
 if [ ! -d "$SOURCE_DIR" ]; then
     echo "❌ 错误：找不到源目录！"
-    echo "   请确认你的笔记是在 D 盘吗？如果是在 C 盘，请把脚本里的 /d/ 改成 /c/"
     read -p "按回车退出..."
     exit 1
 fi
 
-# 2. 检查是否有 PDF
-count=$(ls "$SOURCE_DIR"/*.pdf 2>/dev/null | wc -l)
-if [ "$count" -eq 0 ]; then
-    echo "⚠️  警告：在这个文件夹里没找到 PDF 文件。"
-    echo "    请检查你是否已经编译了 LaTeX？或者文件名是不是大写的 .PDF？"
-    read -p "按回车退出..."
-    exit 1
-else
-    echo "✅ 发现 $count 个 PDF 文件，准备更新..."
-fi
+# 2. 【关键步骤】先删除旧文件，打断硬链接
+echo "🗑️  正在清理旧的 PDF (打断硬链接)..."
+# 只删除 pdf，不删 html
+rm -f "$TARGET_DIR"/*.pdf
 
-# 3. 强制复制 (覆盖旧文件)
-cp -f -v "$SOURCE_DIR"/*.pdf "$TARGET_DIR"
+# 3. 重新复制
+echo "📋 正在从源目录复制全新的 PDF..."
+cp -v "$SOURCE_DIR"/*.pdf "$TARGET_DIR"
 
 # 4. 提交到 GitHub
 echo "📦 提交更改到 GitHub..."
 git add .
-git commit -m "Auto update: Sync notes from Projects/shared"
+git commit -m "Force update: Fresh copy of PDF notes"
 git push
 
-echo "🎉 成功！所有笔记已同步到网站。"
+echo "🎉 成功！硬链接已断开，新笔记已上传。"
 read -p "按回车键退出..."
