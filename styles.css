@@ -1,38 +1,49 @@
-/* --- 1. 全局基础设置 --- */
+/* --- 1. 全局重置 --- */
+* {
+    box-sizing: border-box; /* 这一行很重要，防止边框把布局撑破 */
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    width: 100%; /* 撑满全屏 */
+    width: 100%;
     background-color: #fff;
+    overflow-x: hidden; /* 防止横向滚动条 */
 }
 
 /* --- 2. 顶部标题栏 --- */
 .site-header {
-    background-color: #f8f9fa; /* 浅灰背景 */
+    background-color: #f8f9fa;
     padding: 20px 40px;
-    border-bottom: 1px solid #ddd; /* 底部细线 */
+    border-bottom: 1px solid #ddd;
+    /* 让标题栏的内容也居中对齐，跟下面正文呼应（可选） */
+    text-align: center; 
 }
 
 .site-header h1 {
     margin: 0;
     font-size: 24px;
+    /* 如果你想让标题文字也限制宽度居中，可以加下面这两行，不想的话就删掉 */
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 /* --- 3. 核心布局容器 (左右双栏) --- */
 .container {
     display: flex; /* 开启双栏模式 */
-    min-height: 100vh; /* 最小高度占满屏幕 */
+    min-height: 100vh; /* 高度撑满屏幕 */
+    width: 100%; /* 宽度撑满屏幕 */
 }
 
 /* --- 4. 左侧边栏 (Sidebar) --- */
 .sidebar {
-    width: 260px; /* 固定宽度 */
-    background-color: #f5f7f9; /* 淡蓝灰背景 */
+    width: 260px; /* 左边固定宽度 */
+    background-color: #f5f7f9;
     padding: 30px;
-    border-right: 1px solid #ddd; /* 右侧分割线 */
-    flex-shrink: 0; /* 禁止侧边栏被挤压 */
+    border-right: 1px solid #ddd;
+    flex-shrink: 0; /* 铁打的侧边栏，绝对不许缩水 */
 }
 
 .sidebar h2 {
@@ -40,22 +51,11 @@ body {
     border-bottom: 2px solid #333;
     padding-bottom: 10px;
     margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.sidebar h3 {
-    font-size: 0.95em;
-    color: #0366d6;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .sidebar ul {
-    list-style: none; /* 去掉前面的圆点 */
+    list-style: none;
     padding-left: 0;
-    margin: 0;
 }
 
 .sidebar li {
@@ -66,8 +66,7 @@ body {
     text-decoration: none;
     color: #555;
     font-size: 15px;
-    display: block; /* 让链接占满一行，更容易点击 */
-    padding: 2px 0;
+    display: block;
 }
 
 .sidebar a:hover {
@@ -77,63 +76,35 @@ body {
 
 /* --- 5. 右侧内容区 (Content) --- */
 .content {
-    flex-grow: 1; /* 自动填满剩余空间 */
-    padding: 40px 60px; /* 内部留白 */
+    flex-grow: 1; /* 霸占剩余所有空间 */
+    padding: 40px; /* 给整个右侧区域一圈内边距 */
     background-color: #fff;
 }
 
-/* 限制文章内容的宽度，提升阅读体验 */
-.content p, .content h2
-
-/* --- 4. 侧边栏样式 (左侧全高) --- */
-.sidebar {
-    width: 250px; /* 固定宽度 */
-    padding: 20px;
-    background-color: #eef; /* 浅蓝色背景以突出侧边栏 */
-    border-right: 1px solid #ccc;
-    flex-shrink: 0; /* 防止侧边栏被压缩 */
+/* 🔥【关键修改】让正文内容在右侧区域里“居中”显示 🔥 */
+/* 这里的 > * 意思是：选中 content 下面的所有段落、标题、列表 */
+.content > * {
+    max-width: 900px; /* 限制文字内容的最大宽度，太宽了读着累 */
+    
+    /* 核心魔法：左右自动边距，实现水平居中 */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* 保持原来的行间距设置 */
+    line-height: 1.6;
 }
 
-/* --- 5. 导航列表和链接样式 --- */
-.sidebar h2 {
+/* 针对标题和段落的微调 */
+.content h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
     margin-top: 0;
-    border-bottom: 2px solid #aaa;
-    padding-bottom: 5px;
 }
 
-.sidebar ul {
-    list-style: none; /* 移除默认列表点 */
-    padding-left: 0;
-}
-
-.sidebar li a {
-    display: block; /* 使链接占据整行 */
-    padding: 6px 0;
+.content a {
+    color: #0366d6;
     text-decoration: none;
-    color: #0056b3;
-    transition: background-color 0.2s; /* 添加悬停过渡效果 */
 }
-
-.sidebar li a:hover {
-    background-color: #e0e0f0;
-}
-
-/* --- 6. 子菜单 (层次感) 样式 --- */
-.submenu {
-    list-style: none;
-    margin: 5px 0 10px 15px; /* 上外边距 5px, 左外边距 15px */
-    border-left: 2px solid #ddd; /* 左侧垂直线条 */
-    padding-left: 10px;
-}
-
-.submenu li a {
-    font-size: 0.95em;
-    color: #333;
-    padding: 4px 0;
-}
-
-/* --- 7. 主要内容区域样式 (右侧) --- */
-.content {
-    flex-grow: 1; /* 占据剩余的所有空间 */
-    padding: 20px;
+.content a:hover {
+    text-decoration: underline;
 }
