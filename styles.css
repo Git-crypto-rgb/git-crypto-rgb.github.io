@@ -108,3 +108,26 @@ body {
 .content a:hover {
     text-decoration: underline;
 }
+
+/* --- 侧边栏子目录 (三级菜单) 样式 --- */
+
+/* 1. 让嵌套的 ul 缩进，产生层级感 */
+.sidebar ul ul {
+    padding-left: 20px; /* 向右缩进 20px */
+    margin-top: 5px;    /* 跟上面拉开一点距离 */
+    margin-bottom: 5px;
+}
+
+/* 2. 让子菜单的链接字体稍微小一点、颜色淡一点 */
+.sidebar ul ul li a {
+    font-size: 14px;    /* 原来可能是 15px */
+    color: #666;        /* 颜色变灰一点，区分主次 */
+    padding-left: 10px; /* 额外左边距，可选 */
+    border-left: 2px solid #ddd; /* (可选) 左边加个细条，显得更像树状结构 */
+}
+
+/* 3. 鼠标悬停时变色 */
+.sidebar ul ul li a:hover {
+    color: #0366d6;
+    border-left-color: #0366d6;
+}
