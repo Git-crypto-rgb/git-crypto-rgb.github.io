@@ -131,3 +131,11 @@ body {
     color: #0366d6;
     border-left-color: #0366d6;
 }
+
+/* 当某个带有 id 的元素被链接跳转命中时 (相当于 URL 后面带了 #id) */
+:target {
+    background-color: #fff8c5; /* 变成非常淡的黄色高亮背景 */
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.5s ease; /* 增加一点平滑过渡的动画感 */
+}
