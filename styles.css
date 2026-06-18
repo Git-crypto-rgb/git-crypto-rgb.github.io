@@ -139,3 +139,15 @@ body {
     border-radius: 4px;
     transition: background-color 0.5s ease; /* 增加一点平滑过渡的动画感 */
 }
+
+
+html {
+    /* 开启平滑滚动 */
+    scroll-behavior: smooth; 
+}
+
+/* 可选：为了防止页面顶部的导航栏（如果有的话）遮挡标题 */
+/* 您可以给带 id 的标题加上一点向上的偏移量 */
+h2[id], h3[id] {
+    scroll-margin-top: 20px; /* 根据需要调整像素值 */
+}
